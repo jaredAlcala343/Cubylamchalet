@@ -3,6 +3,8 @@
         background-color: #00000000;
         padding: 10px 20px;
         border-radius: 5PX;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px; /* Añadir un margen inferior para separar del Hero */        
     }   
 
     .navbar-brand{
