@@ -1,58 +1,91 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./About.css";
+import QuienesSomosImg from "./images/Heroe.jpg";
+import MisionImg from "./images/Heroe.jpg";
+import VisionImg from "./images/Heroe.jpg";
 
-const About = () => {
-    const [selectedInfo, setSelectedInfo] = useState("Quienes Somos");
-    const [fade, setFade] = useState(false);
+function About() {
+    const [activeTab, setActiveTab] = useState("quienesSomos");
 
-    const handleButtonClick = (info) => {
-        setFade(true);
-        setTimeout(() => {
-            setSelectedInfo(info);
-            setFade(false);
-        }, 300);
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <ul className="button-list">
-                    <li><button onClick={() => handleButtonClick("Quienes Somos")}>Quienes Somos</button></li>
-                    <li><button onClick={() => handleButtonClick("Mision")}>Mision</button></li>
-                    <li><button onClick={() => handleButtonClick("Vision")}>Vision</button></li>
-                    <li><button onClick={() => handleButtonClick("Historia")}>Historia</button></li>
-                </ul>
+        <div className="about-container">
+            <div className="tabs">
+                <button onClick={() => handleTabClick("quienesSomos")} className={activeTab === "quienesSomos" ? "active" : ""}>
+                    Quienes Somos
+                </button>
+                <button onClick={() => handleTabClick("mision")} className={activeTab === "mision" ? "active" : ""}>
+                    Misión
+                </button>
+                <button onClick={() => handleTabClick("vision")} className={activeTab === "vision" ? "active" : ""}>
+                    Visión
+                </button>
+                <button onClick={() => handleTabClick("historia")} className={activeTab === "historia" ? "active" : ""}>
+                    Historia
+                </button>
             </div>
-            <div className={`info-container ${fade ? 'fade' : ''}`}>
-                <div className="info">
-                    {selectedInfo === "Quienes Somos" && (
-                        <div>
+            <div className="content">
+                {activeTab === "quienesSomos" && (
+                    <div className="tab-content fade-in">
+                        <div className="content-left">
                             <h2>Quienes Somos</h2>
-                            <p>Información sobre quienes somos.</p>
+                            <p>
+                                Somos una empresa dedicada a...
+                            </p>
                         </div>
-                    )}
-                    {selectedInfo === "Mision" && (
-                        <div>
-                            <h2>Mision</h2>
-                            <p>Nuestra misión es...</p>
+                        <div className="content-right">
+                            <img src={QuienesSomosImg} alt="Quienes Somos" />
                         </div>
-                    )}
-                    {selectedInfo === "Vision" && (
-                        <div>
-                            <h2>Vision</h2>
-                            <p>Nuestra visión es...</p>
+                    </div>
+                )}
+                {activeTab === "mision" && (
+                    <div className="tab-content fade-in">
+                        <div className="content-left">
+                            <h2>Misión</h2>
+                            <p>
+                                Nuestra misión es...
+                            </p>
                         </div>
-                    )}
-                    {selectedInfo === "Historia" && (
-                        <div>
+                        <div className="content-right">
+                            <img src={MisionImg} alt="Misión" />
+                        </div>
+                    </div>
+                )}
+                {activeTab === "vision" && (
+                    <div className="tab-content fade-in">
+                        <div className="content-left">
+                            <h2>Visión</h2>
+                            <p>
+                                Nuestra visión es...
+                            </p>
+                        </div>
+                        <div className="content-right">
+                            <img src={VisionImg} alt="Visión" />
+                        </div>
+                    </div>
+                )}
+                {activeTab === "historia" && (
+                    <div className="tab-content fade-in">
+                        <div className="content-left">
                             <h2>Historia</h2>
-                            <p>Nuestra historia comenzó...</p>
+                            <p>
+                                Nuestra historia comienza...
+                            </p>
                         </div>
-                    )}
-                </div>
+                        <div className="content-right">
+                            <video controls>
+                                <source src="historia.mp4" type="video/mp4" />
+                                Tu navegador no soporta la etiqueta de video.
+                            </video>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
-};
+}
 
 export default About;
